@@ -2,8 +2,10 @@
 FROM eclipse-temurin:17-jdk AS builder
 WORKDIR /build
 COPY pom.xml .
+COPY mvnw .
+COPY .mvn .mvn
 COPY src ./src
-RUN mvn package -DskipTests
+RUN ./mvnw package -DskipTests
 
 # Runtime stage
 FROM eclipse-temurin:17-jre
